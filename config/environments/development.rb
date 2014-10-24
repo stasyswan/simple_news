@@ -36,16 +36,14 @@ SimpleNewsSite::Application.configure do
   config.assets.debug = true
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address             => "mx",
-    :port                => 25,
-    :authentication      => :plain,
-    :openssl_verify_mode => 'none'
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+      #:domain             => "telesens.com.ua",
+      :address            => "mx",
+      :port               => 25,
+      :authentication => :plain,
+      :openssl_verify_mode=>  'none'
   }
-  # change to true to allow email to be sent during development
-  config.action_mailer.perform_deliveries = false
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default :charset => "utf-8"
+
+  config.action_mailer.default_url_options = {host: "localhost"}
 end
