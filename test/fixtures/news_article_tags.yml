@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  news_article: 
+  tag: 
+
+two:
+  news_article: 
+  tag: 

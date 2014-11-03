@@ -1,0 +1,5 @@
+<tr>
+  <td><%= tag.name %></td>
+  <td><%= link_to 'Edit', edit_tag_path(:id => tag.id, :page => params[:page]), :remote => true, :class => "btn btn-default" %></td>
+  <td><%= link_to 'Destroy', tag_path(tag, :page => params[:page]), method: :delete, :remote => true, :class => "btn btn-danger", data: { confirm: 'Are you sure?' } %></td>
+</tr>

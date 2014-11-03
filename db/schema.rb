@@ -11,13 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141024152259) do
+ActiveRecord::Schema.define(:version => 20141102212722) do
+
+  create_table "news_article_tags", :force => true do |t|
+    t.integer  "news_article_id"
+    t.integer  "tag_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "news_article_tags", ["news_article_id"], :name => "index_news_article_tags_on_news_article_id"
+  add_index "news_article_tags", ["tag_id"], :name => "index_news_article_tags_on_tag_id"
+
+  create_table "news_articles", :force => true do |t|
+    t.string   "heading"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.integer  "news_article_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "tags", ["news_article_id"], :name => "index_tags_on_news_article_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -1,0 +1,8 @@
+$("ul.errors").html("")
+<% if @tag.errors.any? %>
+  $("#inner_tag_modal").html("<%= escape_javascript(render 'new') %>")
+  $("#tag_modal").modal("show")
+<% else %>
+  $("#tags_table").html("<%= escape_javascript(render 'tags') %>")
+  $("#tag_modal").modal("hide")
+<% end %>

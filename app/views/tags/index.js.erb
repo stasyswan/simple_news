@@ -1,0 +1,4 @@
+$('#tags_table').html("<%= escape_javascript(render :partial => 'tags') %>");
+<% if @last_deleted %>
+    $(document.location).attr("href", "<%= @previous_page %>")
+<%end%>

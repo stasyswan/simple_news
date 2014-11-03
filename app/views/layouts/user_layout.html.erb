@@ -28,7 +28,7 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to 'Simple News', root_path, class: 'navbar-brand' %>
-        <%= link_to 'Administration', administration_dashboard_path, class: 'navbar-brand' if current_user && current_user.admin?%>
+        <%= link_to 'Administration', dashboard_path, class: 'navbar-brand' if current_user && current_user.admin?%>
         <div class="pull-right">
           <%= sign_in_out_link %>
         </div>

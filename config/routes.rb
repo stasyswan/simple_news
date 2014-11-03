@@ -1,13 +1,15 @@
 SimpleNewsSite::Application.routes.draw do
-  devise_for :users
-  namespace :administration do
-    get "news/index", :to => "news#index"
 
-    get "dashboard", :to => "admin#index"
-  end
+  resources :tags
+
+
+  resources :news_articles
+
+  get "dashboard", :to => "admin#index"
 
   get "main_page/index"
-
+  
+  devise_for :users
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"
     get "sign_out", :to => "devise/sessions#destroy"

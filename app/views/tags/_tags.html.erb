@@ -1,0 +1,15 @@
+<table class="table table-bordered table-striped">
+	<thead>
+	  <tr>
+	    <th>Name</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+	</thead>
+	<tbody id="tags" class="tags_index">
+	  <%= render :partial => "list_tags", :collection => @tags, :as => :tag %>
+	</tbody>
+</table>
+
+<%= will_paginate @tags, :renderer => BootstrapPagination::Rails %>
+

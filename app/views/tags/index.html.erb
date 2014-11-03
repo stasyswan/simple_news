@@ -1,0 +1,13 @@
+<h1>Listing tags <%= link_to "Add Tag", new_tag_path, :remote => true, :class => "btn btn-primary pull-right" %></h1>
+
+<div id="tags_table">
+  <%= render :partial => "tags"%>
+</div>
+<br />
+
+<div id="tag_modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="inner_tag_modal" class="modal-content"></div>
+  </div>
+</div>
+
