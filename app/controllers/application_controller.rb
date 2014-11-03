@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.admin?
-      dashboard_path
+      news_articles_path
     else
       root_path
     end
