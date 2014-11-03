@@ -1,9 +1,13 @@
 <%= simple_form_for @news_article,  :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-horizontal' } }  do |f| %>
+    <%#= f.input :tags_tokens, :required => true, :input_html => {:id => :tag_tokens}%>
+    <%= f.file_field :avatar %>
     <%= f.input :heading %>
     <%= f.input :body, :as => :text %>
-  <h2>Tags</h2>
+    
   
   <div class="actions">
-    <%= f.submit %>
+    <%= link_to 'Cancel', news_articles_path, :class => "btn btn-default"  %>
+    <%= f.submit :class => "btn btn-primary"%>
   </div>
 <% end %>
+

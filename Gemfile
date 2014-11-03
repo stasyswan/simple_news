@@ -16,7 +16,7 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
 gem 'sass-rails',   '~> 3.2.3'
 gem 'simple_form'
-gem 'paperclip'
+gem "paperclip", "~> 2.7"
 
 group :development do
   gem 'rails_layout'
@@ -35,6 +35,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-tokeninput-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

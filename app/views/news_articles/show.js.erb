@@ -1,0 +1,1 @@
+$('#tags').html("<%= escape_javascript(render :partial => 'tags_table', :collection => @news_article.tags, :as => :tag ) %>");

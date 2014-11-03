@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+  <%= image_tag @news_article.avatar.url(:medium), :class => "pull-left" %>
+</p>
 <p>
   <b>Heading:</b>
   <%= @news_article.heading %>
@@ -9,10 +11,40 @@
   <b>Body:</b>
   <%= @news_article.body %>
 </p>
+<br>
 <p>
   <b>Tags:</b>
-  <%#= join_tags(@news_article) %>
+ <%= simple_form_for @news_article_tag, :url => {:controller=> :news_articles, :action => :add_tag},  :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-horizontal' } }  do |f| %>
+    <%= f.input :tags_tokens, :required => true, :input_html => {:id => :tag_tokens}%>
+    <%= hidden_field_tag :id, params[:id] %>
+ 
+  <div class="actions">
+    <%= f.submit "Add", :class => "btn btn-primary"%>
+  </div>
+<% end %>
+
+
+<table class="table table-bordered table-striped">
+	<thead>
+	  <tr>
+	    <th>Name</th>
+	    <th></th>
+	  </tr>
+	</thead>
+	<tbody id="tags" class="tags_index">
+	  <%= render :partial => "tags_table", :collection => @news_article.tags, :as => :tag %>
+	</tbody>
+</table>
 </p>
 
-<%= link_to 'Edit', edit_news_article_path(@news_article) %> |
-<%= link_to 'Back', news_articles_path %>
+
+<script>
+  $(document).ready(function() {
+        $("#tag_tokens").tokenInput("/token.json?news_article_id=<%=@news_article.id%>", {
+            crossDomain: false,
+            theme: "facebook",
+            preventDuplicates: true,
+            prePopulate: $("#tag_tokens").data("pre")
+         });
+    });
+</script>

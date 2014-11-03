@@ -1,7 +1,8 @@
  <tr>
     <td><%= news_article.heading %></td>
     <td><%= news_article.body %></td>
-    <td><%= link_to 'Show', news_article %></td>
-    <td><%= link_to 'Edit', edit_news_article_path(news_article) %></td>
-    <td><%= link_to 'Destroy', news_article_path(news_article, :page => params[:page]), :remote => true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= join_tags(news_article) %></td>
+    <td><%= link_to 'Show', news_article, :class => "btn btn-default"%></td>
+    <td><%= link_to 'Edit', edit_news_article_path(news_article), :class => "btn btn-default" %></td>
+    <td><%= link_to 'Destroy', news_article_path(news_article, :page => params[:page]), :remote => true, :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

@@ -1,5 +1,5 @@
 class NewsArticlesController < ApplicationController
-  before_filter :set_news_article, only: [:show, :edit, :update, :destroy]
+  before_filter :set_news_article, only: [:show, :edit, :update, :destroy, :add_tag, :destroy_tag]
   before_filter :authenticate_user!, :admin_required
 
   def index
@@ -7,6 +7,7 @@ class NewsArticlesController < ApplicationController
   end
 
   def show
+    @news_article_tag = NewsArticleTag.new
   end
 
   def new
@@ -45,6 +46,34 @@ class NewsArticlesController < ApplicationController
       end
     end
     render :index
+  end
+
+  def destroy_tag
+    NewsArticleTag.where(:news_article_id => @news_article.id, :tag_id => params[:tag_id]).first.destroy
+
+    render :show
+  end
+
+  def add_tag
+    params[:news_article_tag][:tags_tokens].split(",").each do |t|
+      NewsArticleTag.create(:news_article_id => @news_article.id, :tag_id => t.to_i)
+    end
+    @news_article_tag = NewsArticleTag.new
+    render :action => :show
+  end
+
+  def token
+    query = "%" + params[:q] + "%"
+    news_with_token = NewsArticleTag.where(:news_article_id => params[:news_article_id]).map{|n| n.tag_id}
+    if news_with_token == []
+       tags = Tag.where("name like ?", query).map { |u| {"id" => u.id, "name" => u.name} }
+    else
+      tags = Tag.where("id not in (?)", news_with_token).where("name like ?", query).map { |u| {"id" => u.id, "name" => u.name} }
+    end
+   
+    respond_to do |format|
+      format.json { render :json => tags }
+    end
   end
 
   private

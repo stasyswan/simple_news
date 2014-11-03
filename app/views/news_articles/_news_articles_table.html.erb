@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped">
+<thead>
+  <tr>
+    <th>Heading</th>
+    <th>Body</th>
+    <th>Tags</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <div id="news_articles">
+    <%= render :partial => "list_news_articles", :collection => @news_articles, :as => :news_article %>
+  </div>
+  </tbody>
+</table>
+<%= will_paginate @news_articles, :renderer => BootstrapPagination::Rails %>

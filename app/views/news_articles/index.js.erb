@@ -1,4 +1,4 @@
-$('#news_articles').html("<%= escape_javascript(render :partial => 'list_news_articles', :collection => @news_articles, :as => :news_article ) %>");
+$('#article_table').html("<%= escape_javascript(render :partial => 'news_articles_table' ) %>");
 <% if @last_deleted %>
     $(document.location).attr("href", "<%= @previous_page %>")
 <%end%>

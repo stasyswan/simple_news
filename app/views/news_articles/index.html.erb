@@ -1,19 +1,7 @@
-<h1>Listing administration_news_articles <%= link_to 'New News article', new_news_article_path, :class => "btn btn-primary pull-right"  %></h1>
+<h1>Listing News Articles <%= link_to 'New News article', new_news_article_path, :class => "btn btn-primary pull-right"  %></h1>
+<div id="article_table"><%= render :partial => "news_articles_table" %></div>
 
-<table>
-  <tr>
-    <th>Heading</th>
-    <th>Body</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <div id="news_articles">
-    <%= render :partial => "list_news_articles", :collection => @news_articles, :as => :news_article %>
-  </div>
-</table>
 
 <br />
 
 
-<%= will_paginate @news_articles, :renderer => BootstrapPagination::Rails %>

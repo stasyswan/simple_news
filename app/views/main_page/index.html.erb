@@ -1,40 +1,45 @@
 <div class="col-sm-6">
              
                 <div class="panel panel-default">
-                   <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Responsive Design</h4></div>
+                   <div class="panel-heading"> <h4><%= link_to @news_articles_even_last.heading, main_page_show_path(:id => @news_articles_even_last.id) %></h4></div>
                     <div class="panel-body">
-                      <p><img src="//placehold.it/100" class="img-circle pull-right"> <a href="#">Bootstrap Playground</a></p>
+                      <p><img src="<%= @news_articles_even_last.avatar(:medium) %>" class="pull-left"></p>
                       <div class="clearfix"></div>
                       <hr>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-                      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-                      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-                      Aliquam in felis sit amet augue.
+                      <%= @news_articles_even_last.body %>
                       <hr>
-                      <div class="btn-group pull-right btn-toggle"> 
-                        <button class="btn btn-default">ON</button>
-                        <button class="btn btn-primary active">OFF</button>
-                      </div>
+                     
                     </div><!--/panel-body-->
                  </div><!--/panel-->
+
+                <% @news_articles_even.each do |news_article| %>
+                  <div class="panel panel-default">
+                    <div class="panel-heading"> <h4><%= link_to news_article.heading, main_page_show_path(:id => news_article.id) %></h4></div>
+                     </div>
+                 <% end %>
+
             </div><!--/col-->
+
+
+
+
+
             <div class="col-sm-6">
              
                 <div class="panel panel-default">
-                   <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Responsive Design</h4></div>
+                   <div class="panel-heading"> <h4><%= link_to @news_articles_odd_last.heading, main_page_show_path(:id => @news_articles_even_last.id) %></h4></div>
                     <div class="panel-body">
-                      <p><img src="//placehold.it/100" class="img-circle pull-right"> <a href="#">Bootstrap Playground</a></p>
+                      <p><img src="<%= @news_articles_odd_last.avatar(:medium) %>" class="pull-left"></p>
                       <div class="clearfix"></div>
                       <hr>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-                      Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-                      dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-                      Aliquam in felis sit amet augue.
+                      <%= @news_articles_odd_last.body %>
                       <hr>
-                      <div class="btn-group pull-right btn-toggle"> 
-                        <button class="btn btn-default">ON</button>
-                        <button class="btn btn-primary active">OFF</button>
-                      </div>
+                     </div>
                     </div><!--/panel-body-->
-                 </div><!--/panel-->
+                    <% @news_articles_odd.each do |news_article| %>
+                  <div class="panel panel-default">
+                    <div class="panel-heading"> <h4><%= link_to news_article.heading, main_page_show_path(:id => news_article.id) %></h4></div>
+                 </div>
+                 <% end %>
+                 
             </div><!--/col-->
