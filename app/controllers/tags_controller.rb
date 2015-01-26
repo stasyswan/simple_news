@@ -26,23 +26,35 @@ class TagsController < ApplicationController
   def destroy
     @tag.destroy
     find_tags
-    if @tags.length == 0 && params[:page].to_i > 1
-      @last_deleted = true
-      if @page.present?
-        @previous_page = "/tags?page=" +  @page.to_s
-      else
-        @previous_page = "/tags"
-      end
-    end
+    @previous_page = find_prev_page @tags, params[:page].to_i
+    # if @tags.length == 0 && params[:page].to_i > 1
+    #   @last_deleted = true
+    #   if @page.present?
+    #     @previous_page = "/tags?page=" +  @page.to_s
+    #   else
+    #     @previous_page = "/tags"
+    #   end
+    # end
     render :index
   end
 
   private
-    def set_tag
-      @tag = Tag.find(params[:id])
-    end
+  def set_tag
+    @tag = Tag.find(params[:id])
+  end
 
-    def find_tags
-      @tags = Tag.order("created_at desc").page(params[:page])
+  def find_tags
+    @tags = Tag.order("created_at desc").page(params[:page].to_i.eql?(0) ? 1 : params[:page].to_i)
+  end
+
+  def find_prev_page tags, page
+    if tags.length == 0 && page && page > 1
+      @last_deleted = true
+      if page.present?
+        "/tags?page=" + (page - 1).to_s
+      else
+        "/tags"
+      end
     end
+  end
 end

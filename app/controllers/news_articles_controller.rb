@@ -71,14 +71,14 @@ class NewsArticlesController < ApplicationController
   end
 
   def find_news
-    @news_articles = NewsArticle.order("created_at desc").page(params[:page])
+    @news_articles = NewsArticle.order("created_at desc").page(params[:page].to_i.eql?(0) ? 1 : params[:page].to_i)
   end
 
   def find_prev_page news_articles, page
-    if news_articles.length == 0 && page  > 1
+    if news_articles.length == 0 && page && page  > 1
       @last_deleted = true
       if page.present?
-        "/news_articles?page=" +  (page - 1).to_s
+        "/news_articles?page=" + (page - 1).to_s
       else
         "/news_articles"
       end
