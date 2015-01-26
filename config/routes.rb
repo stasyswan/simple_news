@@ -11,8 +11,6 @@ SimpleNewsSite::Application.routes.draw do
   delete "destroy_tag" => "news_articles#destroy_tag"
   post "news_article_tags" => "news_articles#add_tag"
 
-  get "dashboard", :to => "admin#index"
-
   get "main_page/index"
   get "main_page/show_news_tag"
   get "main_page/show"

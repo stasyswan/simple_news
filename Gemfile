@@ -18,6 +18,7 @@ gem 'sass-rails',   '~> 3.2.3'
 gem 'simple_form'
 gem "paperclip", "~> 2.7"
 gem 'ckeditor'
+gem 'quiet_assets'
 
 group :development do
   gem 'rails_layout'

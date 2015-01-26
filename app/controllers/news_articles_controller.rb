@@ -37,14 +37,8 @@ class NewsArticlesController < ApplicationController
   def destroy
     @news_article.destroy
     find_news
-    if @news_articles.length == 0 && params[:page].to_i > 1
-      @last_deleted = true
-      if @page.present?
-        @previous_page = "/news_articles?page=" +  @page.to_s
-      else
-        @previous_page = "/news_articles"
-      end
-    end
+    @page = params[:page].to_i
+    @previous_page = find_prev_page @news_articles, @page
     render :index
   end
 
@@ -63,13 +57,8 @@ class NewsArticlesController < ApplicationController
   end
 
   def token
-    query = "%" + params[:q] + "%"
-    news_with_token = NewsArticleTag.where(:news_article_id => params[:news_article_id]).map{|n| n.tag_id}
-    if news_with_token == []
-       tags = Tag.where("name like ?", query).map { |u| {"id" => u.id, "name" => u.name} }
-    else
-      tags = Tag.where("id not in (?)", news_with_token).where("name like ?", query).map { |u| {"id" => u.id, "name" => u.name} }
-    end
+    news_with_token_arr = NewsArticleTag.news_with_token(params[:news_article_id]).map{|n| n.tag_id}
+    tags = Tag.search(news_with_token_arr, "%" + params[:q] + "%")
    
     respond_to do |format|
       format.json { render :json => tags }
@@ -77,11 +66,22 @@ class NewsArticlesController < ApplicationController
   end
 
   private
-    def set_news_article
-      @news_article = NewsArticle.find(params[:id])
-    end
+  def set_news_article
+    @news_article = NewsArticle.find(params[:id])
+  end
 
-    def find_news
-      @news_articles = NewsArticle.order("created_at desc").paginate(:per_page => 10, :page => (params[:page].to_i == 0 ? 1 : params[:page].to_i))
+  def find_news
+    @news_articles = NewsArticle.order("created_at desc").page(params[:page])#.paginate(:per_page => 10, :page => (params[:page].to_i == 0 ? 1 : params[:page].to_i))
+  end
+
+  def find_prev_page news_articles, page
+    if news_articles.length == 0 && page  > 1
+      @last_deleted = true
+      if page.present?
+        "/news_articles?page=" +  (page - 1).to_s
+      else
+        "/news_articles"
+      end
     end
+  end
 end

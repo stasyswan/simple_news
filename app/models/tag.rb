@@ -4,4 +4,12 @@ class Tag < ActiveRecord::Base
   attr_accessible :name
 
   validates :name, :presence => true
+
+  def self.search(news_with_token_arr, query)
+  	if news_with_token_arr.empty?
+       where("name like ?", query).map { |u| {"id" => u.id, "name" => u.name} }
+    else
+      where("id not in (?) and name like ?", news_with_token_arr, query).map{ |u| {"id" => u.id, "name" => u.name} }
+    end
+  end
 end
