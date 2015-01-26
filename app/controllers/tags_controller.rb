@@ -27,14 +27,7 @@ class TagsController < ApplicationController
     @tag.destroy
     find_tags
     @previous_page = find_prev_page @tags, params[:page].to_i
-    # if @tags.length == 0 && params[:page].to_i > 1
-    #   @last_deleted = true
-    #   if @page.present?
-    #     @previous_page = "/tags?page=" +  @page.to_s
-    #   else
-    #     @previous_page = "/tags"
-    #   end
-    # end
+
     render :index
   end
 
