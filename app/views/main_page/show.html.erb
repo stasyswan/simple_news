@@ -1,20 +1,29 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <%= image_tag @news_article.avatar.url(:medium), :class => "pull-left" %>
-</p>
-<p>
-  <b>Heading:</b>
-  <%= @news_article.heading %>
-</p>
 
-<p>
-  <b>Body:</b>
-  <%= @news_article.body %>
-</p>
-<br>
-<p>
-  <b>Tags:</b>
-<%= join_tags(@news_article) %>
-</p>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9">
+      <div class="h3"><%= image_tag(@news_article.avatar.url(:thumb), :class => "img_class pull-left") %> <%= @news_article.heading %></div>
+    </div>
+  </div>
+</div>
+<br/>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span9">
+		  <%= @news_article.body %>
+		</div>
+	</div>
+</div>
+<br/>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span9">
+		  <b>Tags:</b>
+			<%= join_tags_link(@news_article) %>
+		</div>
+	</div>
+</div>
+
 
 

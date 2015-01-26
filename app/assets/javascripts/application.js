@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery.tokeninput
-//= require_tree .
+//= require ckeditor/init

@@ -1,27 +1,36 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <%= image_tag @news_article.avatar.url(:medium), :class => "pull-left" %>
-</p>
-<p>
-  <b>Heading:</b>
-  <%= @news_article.heading %>
-</p>
-
-<p>
-  <b>Body:</b>
-  <%= @news_article.body %>
-</p>
-<br>
-<p>
-  <b>Tags:</b>
- <%= simple_form_for @news_article_tag, :url => {:controller=> :news_articles, :action => :add_tag},  :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-horizontal' } }  do |f| %>
-    <%= f.input :tags_tokens, :required => true, :input_html => {:id => :tag_tokens}%>
-    <%= hidden_field_tag :id, params[:id] %>
- 
-  <div class="actions">
-    <%= f.submit "Add", :class => "btn btn-primary"%>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="h3"><%= image_tag(@news_article.avatar.url(:thumb), :class => "img_class pull-left") %> <%= @news_article.heading %></div>
+    </div>
   </div>
-<% end %>
+</div>
+<br/>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9">
+      <%= @news_article.body %>
+    </div>
+  </div>
+</div>
+<br/>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9">
+      <b>Tags:</b>
+      <%= simple_form_for @news_article_tag, :html => {:class => "form-inline"} do |f| %>
+        <%= f.input :tags_tokens, :required => true, :label => false, :input_html => {:id => :tag_tokens}%>
+        <%= hidden_field_tag :id, params[:id] %>
+
+        <%= f.submit "Add", :class => "btn btn-primary"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<br/>
+  
 
 
 <table class="table table-bordered table-striped">

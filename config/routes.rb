@@ -1,5 +1,7 @@
 SimpleNewsSite::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :tags
 
 
@@ -7,7 +9,7 @@ SimpleNewsSite::Application.routes.draw do
     
   get 'token' => 'news_articles#token', :as => 'token'
   delete "destroy_tag" => "news_articles#destroy_tag"
-  post "add_tag" => "news_articles#add_tag"
+  post "news_article_tags" => "news_articles#add_tag"
 
   get "dashboard", :to => "admin#index"
 

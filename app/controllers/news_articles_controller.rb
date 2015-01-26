@@ -59,7 +59,7 @@ class NewsArticlesController < ApplicationController
       NewsArticleTag.create(:news_article_id => @news_article.id, :tag_id => t.to_i)
     end
     @news_article_tag = NewsArticleTag.new
-    render :action => :show
+    redirect_to news_article_path(@news_article.id)
   end
 
   def token

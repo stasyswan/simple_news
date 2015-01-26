@@ -16,3 +16,17 @@
  */
 
 .whole_width{width:100%}
+
+.img_class{
+	width: 100px;
+	margin: 0 10px 0 0;
+}
+
+.news_title {
+	font-size: 16px;
+	color: #322E2E;
+}
+
+.title{
+	margin: 20px 25px;
+}
