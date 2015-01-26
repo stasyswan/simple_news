@@ -1,6 +1,9 @@
 class Tag < ActiveRecord::Base
   has_many :news_articles, :through => :news_article_tags
   has_many :news_article_tags
+
+  self.per_page = 3
+  
   attr_accessible :name
 
   validates :name, :presence => true

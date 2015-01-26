@@ -43,6 +43,6 @@ class TagsController < ApplicationController
     end
 
     def find_tags
-      @tags = Tag.order("created_at desc").paginate(:per_page => 10, :page => (params[:page].to_i == 0 ? 1 : params[:page].to_i))
+      @tags = Tag.order("created_at desc").page(params[:page])
     end
 end
