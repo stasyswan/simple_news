@@ -71,7 +71,7 @@ class NewsArticlesController < ApplicationController
   end
 
   def find_news
-    @news_articles = NewsArticle.order("created_at desc").page(params[:page])#.paginate(:per_page => 10, :page => (params[:page].to_i == 0 ? 1 : params[:page].to_i))
+    @news_articles = NewsArticle.order("created_at desc").page(params[:page])
   end
 
   def find_prev_page news_articles, page

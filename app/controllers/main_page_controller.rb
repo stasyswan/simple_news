@@ -6,7 +6,7 @@ class MainPageController < ApplicationController
   end
 
   def show_news_tag
-  	@news_articles = Tag.find(params[:id]).news_articles
+  	@news_articles = Tag.find(params[:id]).news_articles.page(params[:page])
   end
 
   def show
